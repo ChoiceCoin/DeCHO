@@ -29,6 +29,6 @@ The api is written in python.
 
 #
 ### Contact eMail
->> xekhai@decho.finance
+>> @decho.finance
 ### WhatsApp or Text
 >> +1 (724) 648-4204
