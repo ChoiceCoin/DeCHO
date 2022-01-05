@@ -2,7 +2,7 @@
 Repository for DeCHO - a crowdfunding platform using Choice Coin for voting.
 
 #
-# ReactNative Expo
+# ReactNative
 This project is built using ReactNative
 
 ## Code to run
