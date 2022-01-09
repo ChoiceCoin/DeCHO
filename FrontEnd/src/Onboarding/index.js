@@ -5,15 +5,16 @@ import Dots from 'react-native-dots-pagination';
 import { useFonts, JosefinSans_700Bold, JosefinSans_400Regular } from '@expo-google-fonts/josefin-sans';
 import AppLoading from 'expo-app-loading';
 import PagerView from "react-native-pager-view";
+import { Platform } from "react-native";
 
 const applause = require("../../assets/images/onboarding/applause.png")
 const award = require("../../assets/images/onboarding/award.png")
 const funding = require("../../assets/images/onboarding/funding.png")
 const verified = require("../../assets/images/onboarding/verified.png")
 
-function Onboarding () {
+function Onboarding ({ navigation }) {
     let [fontsLoaded] = useFonts({JosefinSans_700Bold, JosefinSans_400Regular});
-    if (!fontsLoaded) {
+    if (!fontsLoaded && Platform.OS == 'ios') {
         return <AppLoading />;
       } else {
     return(
@@ -46,7 +47,9 @@ function Onboarding () {
             <Image mb={50} source={award} alt='applause' h='300' w='300' alignSelf={'center'} />
             <Text mb={5} color={colors.white} fontWeight={'bold'} fontSize={'24'} fontFamily={'JosefinSans_700Bold'}>Finally, you can earn choice token for performing basic tasks.</Text>
             <Text color={colors.white} fontFamily={'JosefinSans_400Regular'}>Ensure, you opt in to the Choice ASA</Text>
-            <Pressable mt={75} shadow={7} h='60' w='60' rounded={'full'} alignItems={'center'} justifyContent={'center'} background={colors.white}>
+            <Pressable onPress={()=>{
+                navigation.navigate('AnonymousApproval')
+            }} mt={75} shadow={7} h='60' w='60' rounded={'full'} alignItems={'center'} justifyContent={'center'} background={colors.white}>
                 <Text color={colors.onboardcolor4} fontWeight={'bold'} fontSize={'20'} fontFamily={'JosefinSans_700Bold'}>Vote!</Text>
             </Pressable>
             <HStack alignSelf={'flex-end'}>

@@ -4,10 +4,11 @@ const colors={
     onboardcolor3 : '#1A434F',
     onboardcolor4 : '#F08417',
     white : '#FFF',
-    grey : '#C4C4C4',
+    grey : '#A7A7A7',
     black : '#000',
     red : '#ff0000',
-    teal : '#006D5B'
+    teal : '#006D5B',
+    lightBlue : '#E9F8FB'
 }
 
 export default colors

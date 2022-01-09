@@ -2,7 +2,6 @@ import React from 'react';
 import {
     VStack,
     Text,
-    TextArea,
     ScrollView,
     Button,
     Divider,
@@ -14,12 +13,14 @@ import {
     JosefinSans_400Regular,
 } from '@expo-google-fonts/josefin-sans';
 import AppLoading from 'expo-app-loading';
+import { Platform } from "react-native";
 
 const warning = require('../../assets/images/connectWallet/warning.png');
 function ProceedWallet({ navigation }) {
     let [fontsLoaded] = useFonts({ JosefinSans_700Bold, JosefinSans_400Regular });
+console.log(Platform.OS)
 
-    if (!fontsLoaded) {
+    if (!fontsLoaded && Platform.OS == 'ios') {
         return <AppLoading />;
     } else {
         return (
@@ -29,6 +30,7 @@ function ProceedWallet({ navigation }) {
                     mb={5}
                     color={colors.black}
                     fontSize={'30'}
+                    fontWeight={'bold'}
                     fontFamily={'JosefinSans_400Regular'}>
                       DeCHO
                   </Text>

@@ -15,7 +15,7 @@ function ConnectWallet({ navigation }) {
     let [fontsLoaded] = useFonts({ JosefinSans_700Bold, JosefinSans_400Regular });
     const [showModal, setShowModal] = React.useState(false);
 
-    if (!fontsLoaded) {
+    if (!fontsLoaded && Platform.OS == 'ios') {
         return <AppLoading />;
     } else {
         return (
@@ -35,6 +35,7 @@ function ConnectWallet({ navigation }) {
                         mb={5}
                         color={colors.black}
                         fontSize={'30'}
+                        fontWeight={'bold'}
                         fontFamily={'JosefinSans_400Regular'}>
                           DeCHO
                       </Text>
@@ -50,6 +51,7 @@ function ConnectWallet({ navigation }) {
                         mb={1}
                         color={colors.black}
                         fontSize={'24'}
+                        fontWeight={'bold'}
                         fontFamily={'JosefinSans_700Bold'}>
                           Alias
                       </Text>
@@ -65,6 +67,7 @@ function ConnectWallet({ navigation }) {
                         mb={5}
                         color={colors.black}
                         fontSize={'24'}
+                        fontWeight={'bold'}
                         fontFamily={'JosefinSans_700Bold'}>
                           Memonic Keys
                       </Text>
@@ -80,6 +83,7 @@ function ConnectWallet({ navigation }) {
                         my={5}
                         color={colors.black}
                         fontSize={'16'}
+                        fontWeight={'bold'}
                         fontFamily={'JosefinSans_700Bold'}>
                           Phrase Counter :{' '}
                           <Text fontFamily={'JosefinSans_400Regular'}>0</Text>
@@ -113,7 +117,7 @@ function ConnectWallet({ navigation }) {
                             fontSize={'16'}
                             alignSelf={'center'}
                             fontFamily={'JosefinSans_400Regular'}>
-                              Error message
+                              Coming SOON!
                           </Text>
                       </Modal.Body>
                       <Modal.Footer>

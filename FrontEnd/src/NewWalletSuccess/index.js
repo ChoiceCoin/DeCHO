@@ -17,7 +17,7 @@ function NewWalletSuccess ({ navigation }) {
     const toast = useToast()
 
 
-    if (!fontsLoaded) {
+    if (!fontsLoaded && Platform.OS == 'ios') {
         return <AppLoading />;
       } else {
     return(
@@ -32,8 +32,8 @@ function NewWalletSuccess ({ navigation }) {
             {/*}}>*/}
             {/*    Go back*/}
             {/*</Button>*/}
-            <Text mb={5} color={colors.black} fontSize={'30'} fontFamily={'JosefinSans_400Regular'}>DeCHO</Text>
-            <Text mb={5} color={colors.black} fontSize={'14'} fontFamily={'JosefinSans_400Regular'}>
+            <Text fontWeight={'bold'} mb={5} color={colors.black} fontSize={'30'} fontFamily={'JosefinSans_400Regular'}>DeCHO</Text>
+            <Text fontWeight={'bold'} mb={5} color={colors.black} fontSize={'14'} fontFamily={'JosefinSans_400Regular'}>
             Success!
             </Text>
             <Text mb={1} color={colors.black} fontSize={'24'} fontFamily={'JosefinSans_400Regular'}>
@@ -55,14 +55,14 @@ function NewWalletSuccess ({ navigation }) {
             </Pressable>
             <Divider my={5}/>
 
-            <Text mb={5} color={colors.black} fontSize={'24'} fontFamily={'JosefinSans_700Bold'}>Memonic Keys</Text>
+            <Text fontWeight={'bold'} mb={5} color={colors.black} fontSize={'24'} fontFamily={'JosefinSans_700Bold'}>Memonic Keys</Text>
             <Text mb={5} color={colors.black} fontSize={'20'} fontFamily={'JosefinSans_400Regular'}>
             Safe Guard your mnemonics and save them now!
             </Text>
             <TextArea mb={5}></TextArea>
         </VStack>
         </ScrollView>
-        <Button isLoading={showModal} mx={5} mb={5} colorScheme='teal' onPress={() => setShowModal(true)}>Proceed</Button>
+        <Button /*isLoading = { showModal }*/ isLoading={true} mx={5} mb={5} colorScheme='teal' onPress={() => setShowModal(true)}>Coming Soon</Button>
         </KeyboardAvoidingView>
     )}
 }
