@@ -1,24 +1,14 @@
 import React from 'react';
 import { VStack, Text, TextArea, ScrollView, Button } from 'native-base';
 import colors from '../utils/colors';
-import {
-    useFonts,
-    JosefinSans_700Bold,
-    JosefinSans_400Regular,
-} from '@expo-google-fonts/josefin-sans';
-import AppLoading from 'expo-app-loading';
 import { KeyboardAvoidingView, Input, Modal, Image } from 'native-base';
 import { Platform } from "react-native";
 
 const warning = require('../../assets/images/connectWallet/warning.png');
 function ConnectWallet({ navigation }) {
-    let [fontsLoaded] = useFonts({ JosefinSans_700Bold, JosefinSans_400Regular });
     const [showModal, setShowModal] = React.useState(false);
 
-    if (!fontsLoaded && Platform.OS == 'ios') {
-        return <AppLoading />;
-    } else {
-        return (
+return (
           <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
             style={{ flex: 1 }}
@@ -35,15 +25,15 @@ function ConnectWallet({ navigation }) {
                         mb={5}
                         color={colors.black}
                         fontSize={'30'}
-                        fontWeight={'bold'}
-                        fontFamily={'JosefinSans_400Regular'}>
+                        fontWeight={'500'}
+                        fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
                           DeCHO
                       </Text>
                       <Text
                         mb={5}
                         color={colors.black}
                         fontSize={'20'}
-                        fontFamily={'JosefinSans_400Regular'}>
+                        fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
                           Please note that your keys are only stored locally and not saved
                           to any of our databses.
                       </Text>
@@ -51,8 +41,8 @@ function ConnectWallet({ navigation }) {
                         mb={1}
                         color={colors.black}
                         fontSize={'24'}
-                        fontWeight={'bold'}
-                        fontFamily={'JosefinSans_700Bold'}>
+                        fontWeight={'500'}
+                        fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
                           Alias
                       </Text>
                       <Input
@@ -67,15 +57,15 @@ function ConnectWallet({ navigation }) {
                         mb={5}
                         color={colors.black}
                         fontSize={'24'}
-                        fontWeight={'bold'}
-                        fontFamily={'JosefinSans_700Bold'}>
+                        fontWeight={'500'}
+                        fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
                           Memonic Keys
                       </Text>
                       <Text
                         mb={5}
                         color={colors.black}
                         fontSize={'20'}
-                        fontFamily={'JosefinSans_400Regular'}>
+                        fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
                           Enter your phrases separated by spaces
                       </Text>
                       <TextArea></TextArea>
@@ -83,10 +73,10 @@ function ConnectWallet({ navigation }) {
                         my={5}
                         color={colors.black}
                         fontSize={'16'}
-                        fontWeight={'bold'}
-                        fontFamily={'JosefinSans_700Bold'}>
+                        fontWeight={'500'}
+                        fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
                           Phrase Counter :{' '}
-                          <Text fontFamily={'JosefinSans_400Regular'}>0</Text>
+                          <Text fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>0</Text>
                       </Text>
                   </VStack>
               </ScrollView>
@@ -116,7 +106,7 @@ function ConnectWallet({ navigation }) {
                             color={colors.red}
                             fontSize={'16'}
                             alignSelf={'center'}
-                            fontFamily={'JosefinSans_400Regular'}>
+                            fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
                               Coming SOON!
                           </Text>
                       </Modal.Body>
@@ -134,7 +124,7 @@ function ConnectWallet({ navigation }) {
           </KeyboardAvoidingView>
         );
     }
-}
+
 
 export default ConnectWallet;
 

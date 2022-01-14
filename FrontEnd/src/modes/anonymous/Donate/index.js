@@ -39,9 +39,7 @@ function AnonymousDonate({ navigation }) {
   const [showModal, setShowModal] = React.useState(false);
   const [address, setAddress] = React.useState('')
 
-  if (!fontsLoaded && Platform.OS == 'ios') {
-    return <AppLoading />;
-  } else {
+
   return(
     <ScrollView bg={colors.white}>
       <VStack w={'100%'} h={'100%'} pt={10} space={3}>
@@ -54,8 +52,8 @@ function AnonymousDonate({ navigation }) {
           mx={5}
           color={colors.black}
           fontSize={'24'}
-          fontWeight={'bold'}
-          fontFamily={'JosefinSans_700Bold'}>
+          fontWeight={'500'}
+          fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
           Donate
         </Text>
         <Input mx={5} placeholder={'Search....'} />
@@ -87,7 +85,7 @@ function AnonymousDonate({ navigation }) {
         m={5}
         color={colors.black}
         fontSize={'12'}
-        fontFamily={'JosefinSans_400Regular'}
+        fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}
         alignSelf={'flex-start'}
         >
           {'<< View unapproved projects'}
@@ -102,7 +100,7 @@ function AnonymousDonate({ navigation }) {
               my={2}
               color={colors.black}
               fontSize={'16'}
-              fontFamily={'JosefinSans_400Regular'}>
+              fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
               Make your vote towards this project by sending ALGO to this address.
               {'\n'}Your Algo will be refunded if this project does not reach it's Goal
             </Text>
@@ -115,7 +113,7 @@ function AnonymousDonate({ navigation }) {
               )
             }}
                        flexDirection={'row'} background={colors.grey} p={5} borderRadius={'md'} justifyContent={'space-between'}>
-              <Text color={colors.black} fontSize={'12'} fontFamily={'JosefinSans_400Regular'}>
+              <Text color={colors.black} fontSize={'12'} fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
                 SWKJYUGFDSHKJI88GF90UUHGD45D
               </Text>
               <Image source={copy} alt='applause' h='5' w='5' alignSelf={'center'} />
@@ -135,7 +133,7 @@ function AnonymousDonate({ navigation }) {
 
     </ScrollView>
   )}
-}
+
 
 export default AnonymousDonate ;
 //pwhncaef==============================[==---------0pp0--0

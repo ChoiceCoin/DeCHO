@@ -21,9 +21,7 @@ function ViewInfo({ navigation }) {
   const [showModal, setShowModal] = React.useState(false);
   let pFix = ''
 
-  if (!fontsLoaded && Platform.OS == 'ios') {
-    return <AppLoading />;
-  } else {
+
     return(
       <ScrollView bg={colors.white}>
         <VStack w={'100%'} h={'100%'} px={5} pt={10} space={3}>
@@ -36,7 +34,7 @@ function ViewInfo({ navigation }) {
           <Text
             color={colors.black}
             fontSize={'24'}
-            fontFamily={'JosefinSans_700Bold'} mx={2}>
+            fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''} mx={2}>
             Hi, Good morning.
           </Text>
           <NameBox name={'XCA DeCHO'} slogan={'A great DeCHO'}/>
@@ -60,7 +58,6 @@ function ViewInfo({ navigation }) {
         </VStack>
       </ScrollView>
     )}
-}
 
 export default ViewInfo;
 

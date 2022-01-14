@@ -13,13 +13,7 @@ import {
   Input, FlatList,
 } from "native-base";
 import { Platform, TouchableOpacity, Dimensions } from "react-native";
-import {
-  useFonts,
-  JosefinSans_700Bold,
-  JosefinSans_400Regular,
-} from '@expo-google-fonts/josefin-sans';
 import colors from "../../../utils/colors";
-import AppLoading from 'expo-app-loading';
 import Clipboard from "@react-native-clipboard/clipboard";
 import NameBox from "../../../globalComponents/infoBox/NameBox";
 import ProgressBox from "../../../globalComponents/ProgressBox/ProgressBox";
@@ -38,14 +32,11 @@ function AnonymousApproval({ navigation }) {
 
   const width = Dimensions.get('window').width
 
-  let [fontsLoaded] = useFonts({ JosefinSans_700Bold, JosefinSans_400Regular });
 
   const [showModal, setShowModal] = React.useState(false);
   const [address, setAddress] = React.useState('')
 
-  if (!fontsLoaded && Platform.OS == 'ios') {
-    return <AppLoading />;
-  } else {
+
   return(
     <ScrollView bg={colors.white}>
       <VStack w={'100%'} h={'100%'} pt={10} space={3}>
@@ -58,8 +49,8 @@ function AnonymousApproval({ navigation }) {
           mx={5}
           color={colors.black}
           fontSize={'24'}
-          fontWeight={'bold'}
-          fontFamily={'JosefinSans_700Bold'}>
+          fontWeight={'500'}
+          fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
           Hi, Good morning.
         </Text>
         <Input
@@ -104,7 +95,7 @@ function AnonymousApproval({ navigation }) {
         my={5}
         color={colors.black}
         fontSize={'12'}
-        fontFamily={'JosefinSans_400Regular'}
+        fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}
         alignSelf={'flex-end'}
         >
         View approved projects>>
@@ -120,7 +111,7 @@ function AnonymousApproval({ navigation }) {
               my={2}
               color={colors.black}
               fontSize={'16'}
-              fontFamily={'JosefinSans_400Regular'}>
+              fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
               Make your vote towards this project by sending CHOICE to this address.
               {'\n'}Your Choice will be refunded and rewarded!
             </Text>
@@ -133,7 +124,7 @@ function AnonymousApproval({ navigation }) {
               )
             }}
                        flexDirection={'row'} background={colors.grey} p={5} borderRadius={'md'} justifyContent={'space-between'}>
-              <Text color={colors.black} fontSize={'12'} fontFamily={'JosefinSans_400Regular'}>
+              <Text color={colors.black} fontSize={'12'} fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
                 {address}
               </Text>
               <Image source={copy} alt='applause' h='5' w='5' alignSelf={'center'} />
@@ -153,6 +144,6 @@ function AnonymousApproval({ navigation }) {
 
     </ScrollView>
   )}
-}
+
 
 export default AnonymousApproval;
