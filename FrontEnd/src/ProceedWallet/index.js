@@ -7,22 +7,11 @@ import {
     Divider,
 } from 'native-base';
 import colors from '../utils/colors';
-import {
-    useFonts,
-    JosefinSans_700Bold,
-    JosefinSans_400Regular,
-} from '@expo-google-fonts/josefin-sans';
-import AppLoading from 'expo-app-loading';
 import { Platform } from "react-native";
 
-const warning = require('../../assets/images/connectWallet/warning.png');
 function ProceedWallet({ navigation }) {
-    let [fontsLoaded] = useFonts({ JosefinSans_700Bold, JosefinSans_400Regular });
-console.log(Platform.OS)
 
-    if (!fontsLoaded && Platform.OS == 'ios') {
-        return <AppLoading />;
-    } else {
+
         return (
           <ScrollView background={colors.white} style={{ flex: 1 }}>
               <VStack w="100%" h="100%" px={5} pt={10}>
@@ -30,15 +19,15 @@ console.log(Platform.OS)
                     mb={5}
                     color={colors.black}
                     fontSize={'30'}
-                    fontWeight={'bold'}
-                    fontFamily={'JosefinSans_400Regular'}>
+                    fontWeight={'500'}
+                    fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
                       DeCHO
                   </Text>
                   <Text
                     mb={5}
                     color={colors.black}
                     fontSize={'20'}
-                    fontFamily={'JosefinSans_400Regular'}>
+                    fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
                       How do you want to proceed?
                   </Text>
                   <Button
@@ -51,7 +40,7 @@ console.log(Platform.OS)
                       <Text
                         fontSize={'16'}
                         color={colors.teal}
-                        fontFamily={'JosefinSans_400Regular'}>
+                        fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
                           Use Existing Wallet
                       </Text>
                   </Button>
@@ -65,7 +54,7 @@ console.log(Platform.OS)
                       <Text
                         fontSize={'16'}
                         color={colors.teal}
-                        fontFamily={'JosefinSans_400Regular'}>
+                        fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
                           Generate a new Wallet (recommended)
                       </Text>
                   </Button>
@@ -77,20 +66,20 @@ console.log(Platform.OS)
                       <Text
                         fontSize={'16'}
                         color={colors.teal}
-                        fontFamily={'JosefinSans_400Regular'}>
+                        fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
                           Stay Anonymous
                       </Text>
                   </Button>
                   <Divider my={5} />
-                  <Text fontSize={'16'} fontFamily={'JosefinSans_400Regular'}>
+                  <Text fontSize={'16'} fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
                       Generate a new Wallet allows you operate and use majority of the
                       functions inside the app.
                   </Text>
-                  <Text fontSize={'16'} fontFamily={'JosefinSans_400Regular'}>
+                  <Text fontSize={'16'} fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
                       {'\n'}Staying Anonymous, you will only be able to use your external
                       wallet to make transactions.
                   </Text>
-                  <Text fontSize={'16'} fontFamily={'JosefinSans_400Regular'}>
+                  <Text fontSize={'16'} fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
                       {'\n'}Using an Existing wallet, you give the app authority to make
                       the permitted transactions on your behalf.
                   </Text>
@@ -98,7 +87,6 @@ console.log(Platform.OS)
           </ScrollView>
         );
     }
-}
 
 export default ProceedWallet;
 

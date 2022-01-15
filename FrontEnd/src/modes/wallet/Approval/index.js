@@ -36,7 +36,7 @@ function WalletApproval() {
         <Text
           color={colors.black}
           fontSize={'24'}
-          fontFamily={'JosefinSans_700Bold'}>
+          fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
           Hi, Good morning.
         </Text>
         <ImageBackground source={xki} style={{height:350}} imageStyle={{ borderRadius: 10}}>
@@ -48,14 +48,14 @@ function WalletApproval() {
           <Text
             color={colors.black}
             fontSize={'24'}
-            fontFamily={'JosefinSans_700Bold'}>
+            fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
             Xekhai Industries
           </Text>
           <Text
           mb={1}
           color={colors.grey}
           fontSize={'12'}
-          fontFamily={'JosefinSans_400Regular'}>
+          fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
           A great industry
         </Text>
         </LinearGradient>
@@ -78,7 +78,7 @@ function WalletApproval() {
             m={1}
             color={colors.black}
             fontSize={'18'}
-            fontFamily={'JosefinSans_400Regular'}>
+            fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
             13,056
           </Text>
           <Progress mb={1} value={'55'} colorScheme={'emerald'}/>
@@ -86,7 +86,7 @@ function WalletApproval() {
             mb={1}
             color={colors.black}
             fontSize={'18'}
-            fontFamily={'JosefinSans_400Regular'}
+            fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}
             alignSelf={'flex-end'}
           >
             20,000
@@ -99,7 +99,7 @@ function WalletApproval() {
         mt={10}
         color={colors.black}
         fontSize={'12'}
-        fontFamily={'JosefinSans_400Regular'}
+        fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}
         alignSelf={'flex-end'}
         >
         View approved projects>>
@@ -114,7 +114,7 @@ function WalletApproval() {
               my={2}
               color={colors.black}
               fontSize={'16'}
-              fontFamily={'JosefinSans_400Regular'}>
+              fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
               Make your vote towards this project by sending CHOICE to this address.
               {'\n'}Your Choice will be refunded and rewarded!
             </Text>
@@ -127,7 +127,7 @@ function WalletApproval() {
               )
             }}
                        flexDirection={'row'} background={colors.grey} p={5} borderRadius={'md'} justifyContent={'space-between'}>
-              <Text color={colors.black} fontSize={'12'} fontFamily={'JosefinSans_400Regular'}>
+              <Text color={colors.black} fontSize={'12'} fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
                 SWKJYUGFDSHKJI88GF90UUHGD45D
               </Text>
               <Image source={copy} alt='applause' h='5' w='5' alignSelf={'center'} />
