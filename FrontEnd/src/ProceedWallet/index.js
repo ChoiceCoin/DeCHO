@@ -1,92 +1,118 @@
-import React from 'react';
-import {
-    VStack,
-    Text,
-    ScrollView,
-    Button,
-    Divider,
-} from 'native-base';
-import colors from '../utils/colors';
-import { Platform } from "react-native";
+import React from "react";
+import { VStack, Text, ScrollView, Divider, Image } from "native-base";
+import colors from "../utils/colors";
+import { TouchableOpacity } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+//Icon Images
+const linkImg = require('../../assets/icons/link.png');
+const eyeOffImg = require('../../assets/icons/eye-off.png');
+
+const storeOnboardState = async () => {
+  try {
+    await AsyncStorage.setItem("@onboadState", "Done");
+  } catch (e) {
+    // saving error
+  }
+};
+const getOnboardState = async () => {
+  try {
+    return (value = await AsyncStorage.getItem("@onboadState"));
+  } catch (e) {
+    // error reading value
+  }
+};
 
 function ProceedWallet({ navigation }) {
+  getOnboardState()
+    .then((data) => data)
+    .then((value) => {
+      if (value == "Done") {
+        navigation.navigate("AnonymousApproval");
+      }
+    });
 
+  return (
+    <ScrollView background={colors.black} style={{ flex: 1 }}>
+      <VStack w="100%" h="100%" px={5} pt={10}>
+        <Text
+          mt={5}
+          mb={5}
+          color={colors.white}
+          fontSize={"36"}
+          fontFamily={"JosefinSans-Bold"}
+        >
+          DeCHO [TestNet]
+        </Text>
+        <Text
+          mb={5}
+          color={colors.white}
+          fontSize={"14"}
+          fontFamily={"JosefinSans-Bold"}
+        >
+          How do you want to proceed?
+        </Text>
 
-        return (
-          <ScrollView background={colors.white} style={{ flex: 1 }}>
-              <VStack w="100%" h="100%" px={5} pt={10}>
-                  <Text
-                    mb={5}
-                    color={colors.black}
-                    fontSize={'30'}
-                    fontWeight={'500'}
-                    fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
-                      DeCHO
-                  </Text>
-                  <Text
-                    mb={5}
-                    color={colors.black}
-                    fontSize={'20'}
-                    fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
-                      How do you want to proceed?
-                  </Text>
-                  <Button
-                    my={5}
-                    variant={'outline'}
-                    onPress={() => {
-                        navigation.navigate('ConnectWallet');
-                    }}
-                    colorScheme="teal">
-                      <Text
-                        fontSize={'16'}
-                        color={colors.teal}
-                        fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
-                          Use Existing Wallet
-                      </Text>
-                  </Button>
-                  <Button
-                    my={5}
-                    variant={'outline'}
-                    onPress={() => {
-                        navigation.navigate('NewWalletSuccess');
-                    }}
-                    colorScheme="teal">
-                      <Text
-                        fontSize={'16'}
-                        color={colors.teal}
-                        fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
-                          Generate a new Wallet (recommended)
-                      </Text>
-                  </Button>
-                  <Button my={5} variant={'outline'}
-                          onPress={() => {
-                            navigation.navigate('Onboarding');
-                          }}
-                          colorScheme="teal">
-                      <Text
-                        fontSize={'16'}
-                        color={colors.teal}
-                        fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
-                          Stay Anonymous
-                      </Text>
-                  </Button>
-                  <Divider my={5} />
-                  <Text fontSize={'16'} fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
-                      Generate a new Wallet allows you operate and use majority of the
-                      functions inside the app.
-                  </Text>
-                  <Text fontSize={'16'} fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
-                      {'\n'}Staying Anonymous, you will only be able to use your external
-                      wallet to make transactions.
-                  </Text>
-                  <Text fontSize={'16'} fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
-                      {'\n'}Using an Existing wallet, you give the app authority to make
-                      the permitted transactions on your behalf.
-                  </Text>
-              </VStack>
-          </ScrollView>
-        );
-    }
+        <TouchableOpacity
+          style={{
+            backgroundColor: colors.lightgrey,
+            height: 60,
+            borderRadius: 5,
+            alignItems: "center",
+            justifyContent: "center",
+            flexDirection: 'row'
+          }}
+          onPress={() => {
+            navigation.navigate("WalletConnect");
+          }}
+        >
+          <Image width={5} height={5} marginRight={5} source={linkImg}/>
+          <Text fontSize={24} fontFamily={"JosefinSans-Regular"}>
+            Connect Wallet
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={{
+            backgroundColor: colors.lightgrey,
+            height: 60,
+            borderRadius: 5,
+            alignItems: "center",
+            justifyContent: "center",
+            marginVertical: 20,
+            flexDirection: "row"
+          }}
+          onPress={() => {
+            storeOnboardState();
+            navigation.navigate("Onboarding");
+          }}
+        >
+          <Image width={5} height={5} marginRight={5} source={eyeOffImg}/>
+          <Text fontSize={24} fontFamily={"JosefinSans-Regular"}>
+            Stay Anonymous
+          </Text>
+        </TouchableOpacity>
+
+        <Divider my={5} color={colors.lightgrey} />
+        <Text
+          fontSize={"18"}
+          fontFamily={"JosefinSans-Regular"}
+          color={colors.white}
+        >
+          Connect Wallet uses the wallet connect protocol to connect to an
+          existing Algorand Wallet.
+        </Text>
+        <Text
+          fontSize={"18"}
+          fontFamily={"JosefinSans-Regular"}
+          color={colors.white}
+        >
+          {"\n"}Staying Anonymous will let you use an external wallet to
+          simply send the assets to the generated Addresses
+        </Text>
+      </VStack>
+    </ScrollView>
+  );
+}
 
 export default ProceedWallet;
 
