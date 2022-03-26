@@ -4,10 +4,15 @@ const colors={
     onboardcolor3 : '#1A434F',
     onboardcolor4 : '#F08417',
     white : '#FFF',
-    grey : '#A7A7A7',
-    black : '#000',
+    
+    //new colors
+    grey : '#535151',
+    black : '#282828',
+    lightgrey : '#C4C4C4',
+    darkgrey : '#363636',
+    teal : '#006E75',
+
     red : '#ff0000',
-    teal : '#006D5B',
     lightBlue : '#E9F8FB'
 }
 

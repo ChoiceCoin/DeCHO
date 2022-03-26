@@ -1,36 +1,64 @@
 import React from "react";
-import { Text } from "native-base";
-import { ImageBackground, Platform } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+import { TouchableOpacity, Linking } from 'react-native';
+import { Box, HStack, Text, VStack, Image } from "native-base";
 import colors from "../../utils/colors";
+import FastImage from "react-native-fast-image";
+import ProgressBox from "../ProgressBox/ProgressBox";
+
+//iconGlobe
+const globeImg = require("../../../assets/icons/globe.png");
 function NameBox(props) {
 
-  const [showModal, setShowModal] = React.useState(false);
-
-
-    return(
-      <ImageBackground source={props.img} style={{height:350}} imageStyle={{ borderRadius: 10}}>
-        <LinearGradient colors={['transparent', colors.white]} style={{flex:1,
-          justifyContent:'flex-end',
-          alignItems:'flex-end',
-          paddingRight: 20,
-        }}>
-          <Text
-            color={colors.black}
-            fontSize={'24'}
-            fontWeight={'500'}
-            fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
-            {props.name}
-          </Text>
-          <Text
-            mb={1}
-            color={colors.grey}
-            fontSize={'12'}
-            fontFamily={Platform.OS === 'ios' ? 'Gill Sans' : ''}>
-            {props.slogan}
-          </Text>
-        </LinearGradient>
-      </ImageBackground>
-  )}
+  return (
+    <>
+      <VStack backgroundColor={colors.grey} borderRadius={"20"} shadow={5}>
+        <FastImage
+          style={{ height: 350, borderRadius: 20, borderTopRightRadius: 20 }}
+          source={{ uri: props.img }}
+        />
+        <HStack px={5} pt={4} justifyContent={"space-between"}>
+          <VStack mr={2} ml={-2}>
+            <Text
+              color={colors.white}
+              fontSize={"24"}
+              fontFamily={"JosefinSans-Bold"}
+            >
+              {props.name}
+            </Text>
+            <Text
+              mb={1}
+              color={colors.white}
+              fontSize={"12"}
+              fontFamily={"JosefinSans-Bold"}
+              isTruncated
+              maxW="250"
+            >
+              {props.slogan}
+            </Text>
+          </VStack>
+          <TouchableOpacity
+           onPress={() => {
+            Linking.openURL("https://" + props.slogan).catch(
+              (error) => toast.show({ description: error })
+            );
+          }}>
+          <Box
+            borderRadius={99}
+            size={10}
+            backgroundColor={colors.lightgrey}
+            padding={3}
+          >
+            <Image width={4} height={4} source={globeImg} alt={"Website"} />
+          </Box>
+          </TouchableOpacity>
+        </HStack>
+        <TouchableOpacity onPress={() => {props.navigation.navigate('WebviewURL', {source : "https://testnet.algoexplorer.io/address/"+props.address})}}>
+        <ProgressBox progress={props.balance} goal={props.goal} prefix={""} />
+        </TouchableOpacity>
+      </VStack>
+    </>
+  );
+}
 
 export default NameBox;
+
